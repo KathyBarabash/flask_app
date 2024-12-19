@@ -158,7 +158,8 @@ endif
 # Running                                                                       #
 #-------------------------------------------------------------------------------#
 .PHONY: run_server
-run_server: install		## Run the application server
+# run_server: install
+run_server: 			## Run the application server
 ifeq ($(pyenv_exists),yes)
 > @echo "Starting the server in src/app/app.py"
 > @$(pyenv_path)/python src/app/app.py

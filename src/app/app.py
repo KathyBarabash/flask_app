@@ -1,7 +1,6 @@
-from flask import Flask
-#render_template
+from flask import Flask, render_template
 #flash, redirect, url_for, session, request, logging
-#from data import Articles
+from articles import Articles
 # from flask_mysqldb import MySQL
 # from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 # from passlib.hash import sha256_crypt
@@ -18,12 +17,29 @@ app = Flask(__name__)
 # # init MYSQL
 # mysql = MySQL(app)
 
-# #Articles = Articles()
+Articles = Articles()
 
 # Index
 @app.route('/')
 def index():
-    return ('PRIVET')
+    return render_template('home.html')
+
+# About
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+# Articles
+@app.route('/articles')
+def articles():
+    # return (Articles)   # this just prints the formatted plain text
+    return render_template('articles.html', articles=Articles) 
+
+# Article by id
+@app.route('/articles/<string:id>')
+def article_by_id(id):
+    # return (Articles)   # this just prints the formatted plain text
+    return render_template('article.html', id=id) 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
